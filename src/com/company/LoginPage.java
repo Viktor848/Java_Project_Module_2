@@ -60,10 +60,10 @@ public class LoginPage{
         }
     }
 
-    public static void adminOptions() throws IOException {
+    public void adminOptions() throws IOException {
         Scanner input = new Scanner(System.in);
         System.out.println("Влязохте като админ!\nМоля изберете една от 3-те опции: ");
-        System.out.println("Първа опция е да се въведе клиент\nВтора опция е да се въведе служител\nТрета да се гледа статистика на служителите");
+        System.out.println("Първа опция е да се въведе клиент\nВтора опция е да се въведе служител\nТрета да се гледа статистика на служителите\nЧетвърта опция е изход");
         int n = input.nextInt();
         switch(n){
             case 1:
@@ -78,14 +78,26 @@ public class LoginPage{
                 Admin option3 = new Admin();
                 option3.readProtocols();
                 break;
+            case 4:
+                Login();
             default:
                 System.out.println("Моля изберете една от посочените горе опции!");
                 n = input.nextInt();
         }
     }
 
-    public static void employeeOptions() throws IOException {
+    public void employeeOptions() throws IOException {
         Employee protocol1 = new Employee();
-        protocol1.protocol();
+        Scanner input = new Scanner(System.in);
+        System.out.println("Изберете опциите от 1 до 2\nОпция 1 за създаване на нов протокол\nОпция 2 за изход");
+        int n = input.nextInt();
+        switch (n){
+            case 1:
+                protocol1.protocol();
+                break;
+            case 2:
+                Login();
+                break;
+        }
     }
 }
