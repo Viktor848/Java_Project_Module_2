@@ -63,7 +63,7 @@ public class LoginPage{
     public void adminOptions() throws IOException {
         Scanner input = new Scanner(System.in);
         System.out.println("Влязохте като админ!\nМоля изберете една от 3-те опции: ");
-        System.out.println("Първа опция е да се въведе клиент\nВтора опция е да се въведе служител\nТрета да се гледа статистика на служителите");
+        System.out.println("Първа опция е да се въведе клиент\nВтора опция е да се въведе служител\nТрета да се гледа статистика на служителите\nЧетвърта опция е за изход");
         int n = input.nextInt();
         switch(n){
             case 1:
