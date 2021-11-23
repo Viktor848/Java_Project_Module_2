@@ -35,19 +35,16 @@ public class LoginPage{
             if (names.contains(name)) {
                 for (int i = 0; i < names.size(); i++) {
                     if (name.equals(names.get(i))) {
-                        System.out.println(names.get(i));
-
                         System.out.println("Въведете парола: ");
                         String password = input.nextLine();
 
                         while(true) {
                             if (password.equals(passwords.get(i))) {
-                                System.out.println("Success!");
                                 if (password.equals(passwords.get(0)) && name.equals(names.get(0))){
                                     adminOptions();
                                 }
                                 else{
-
+                                    employeeOptions();
                                 }
                             } else {
                                 System.out.println("Try again!");
@@ -76,6 +73,19 @@ public class LoginPage{
             case 2:
                 Admin option2 = new Admin();
                 option2.addNewEmployee();
+                break;
+            case 3:
+                Admin option3 = new Admin();
+                option3.readProtocols();
+                break;
+            default:
+                System.out.println("Моля изберете една от посочените горе опции!");
+                n = input.nextInt();
         }
+    }
+
+    public static void employeeOptions() throws IOException {
+        Employee protocol1 = new Employee();
+        protocol1.protocol();
     }
 }
