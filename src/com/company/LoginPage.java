@@ -88,5 +88,4 @@ public class LoginPage implements loginPageInterface{
         Employee protocol1 = new Employee();
         protocol1.protocol();
     }
-    so
 }
