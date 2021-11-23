@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class Employee {
+public class Employee  implements employeeInterface{
     public void protocol() throws IOException {
         FileWriter fileWriter = new FileWriter("Employee's protocols.txt",true);
         PrintWriter out = new PrintWriter(fileWriter);

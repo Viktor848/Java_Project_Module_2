@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class LoginPage{
+public class LoginPage implements loginPageInterface{
     public ArrayList<String> names = new ArrayList<>();
     public ArrayList<String> passwords = new ArrayList<>();
 
@@ -60,7 +60,7 @@ public class LoginPage{
         }
     }
 
-    public static void adminOptions() throws IOException {
+    public  void adminOptions() throws IOException {
         Scanner input = new Scanner(System.in);
         System.out.println("Влязохте като админ!\nМоля изберете една от 3-те опции: ");
         System.out.println("Първа опция е да се въведе клиент\nВтора опция е да се въведе служител\nТрета да се гледа статистика на служителите");
@@ -84,7 +84,7 @@ public class LoginPage{
         }
     }
 
-    public static void employeeOptions() throws IOException {
+    public void employeeOptions() throws IOException {
         Employee protocol1 = new Employee();
         protocol1.protocol();
     }
