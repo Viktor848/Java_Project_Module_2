@@ -4,8 +4,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Admin<T> extends LoginPage{
+public class Admin<T> extends LoginPage implements adminInterface{
     public ArrayList<String> customers = new ArrayList<>();
+
 
     public void addNewCustomer() throws IOException {
         FileWriter fileWriter = new FileWriter("Customers.txt",true);
