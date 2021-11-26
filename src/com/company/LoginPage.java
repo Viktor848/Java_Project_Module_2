@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class LoginPage{
-    public ArrayList<String> names = new ArrayList<>();
-    public ArrayList<String> passwords = new ArrayList<>();
+public class LoginPage implements loginPageInterface{
+    private ArrayList<String> names = new ArrayList<>();
+    private ArrayList<String> passwords = new ArrayList<>();
 
-    public void Login() throws IOException {
+    public void namesAndPasswords() throws FileNotFoundException {
         File file = new File("Names and Passwords.txt");
         Scanner fileReader = new Scanner(file, "windows-1251");
         ArrayList<String> list = new ArrayList<String>();
@@ -27,62 +27,79 @@ public class LoginPage{
                 passwords.add(list.get(i));
             }
         }
+    }
 
+    public void Login() throws IOException {
+        namesAndPasswords();
         System.out.println("Въведете име: ");
         Scanner input = new Scanner(System.in);
-        String name = input.nextLine();
-        while (true) {
-            if (names.contains(name)) {
-                for (int i = 0; i < names.size(); i++) {
-                    if (name.equals(names.get(i))) {
-                        System.out.println("Въведете парола: ");
-                        String password = input.nextLine();
+        try {
+            String name = input.nextLine();
+            while (true) {
+                if (names.contains(name)) {
+                    for (int i = 0; i < names.size(); i++) {
+                        if (name.equals(names.get(i))) {
+                            System.out.println("Въведете парола: ");
+                            String password = input.nextLine();
 
-                        while(true) {
-                            if (password.equals(passwords.get(i))) {
-                                if (password.equals(passwords.get(0)) && name.equals(names.get(0))){
-                                    adminOptions();
+                            try {
+                                while (true) {
+                                    if (password.equals(passwords.get(i))) {
+                                        if (password.equals(passwords.get(0)) && name.equals(names.get(0))) {
+                                            adminOptions();
+                                        } else {
+                                            employeeOptions();
+                                        }
+                                    } else {
+                                        System.out.println("Try again!");
+                                        password = input.nextLine();
+                                    }
                                 }
-                                else{
-                                    employeeOptions();
-                                }
-                            } else {
-                                System.out.println("Try again!");
-                                password = input.nextLine();
+                            }
+                            catch (Exception e){
+                                System.out.println("Грешни входни данни!");
                             }
                         }
                     }
+                } else {
+                    System.out.println("Try again!");
+                    name = input.nextLine();
                 }
-            } else {
-                System.out.println("Try again!");
-                name = input.nextLine();
             }
+        }
+        catch (Exception e){
+            System.out.println("Грешни входни данни!");
         }
     }
 
     public void adminOptions() throws IOException {
         Scanner input = new Scanner(System.in);
         System.out.println("Влязохте като админ!\nМоля изберете една от 3-те опции: ");
-        System.out.println("Първа опция е да се въведе клиент\nВтора опция е да се въведе служител\nТрета да се гледа статистика на служителите");
-        int n = input.nextInt();
-        switch(n){
-            case 1:
-                Admin option1 = new Admin();
-                option1.addNewCustomer();
-                break;
-            case 2:
-                Admin option2 = new Admin();
-                option2.addNewEmployee();
-                break;
-            case 3:
-                Admin option3 = new Admin();
-                option3.readProtocols();
-                break;
-            case 4:
-                Login();
-            default:
-                System.out.println("Моля изберете една от посочените горе опции!");
-                n = input.nextInt();
+        System.out.println("Първа опция е да се въведе клиент\nВтора опция е да се въведе служител\nТрета да се гледа статистика на служителите\nЧетвърта опция е за изход");
+        try {
+            int n = input.nextInt();
+            switch (n) {
+                case 1:
+                    Admin option1 = new Admin();
+                    option1.addNewCustomer();
+                    break;
+                case 2:
+                    Admin option2 = new Admin();
+                    option2.addNewEmployee();
+                    break;
+                case 3:
+                    Admin option3 = new Admin();
+                    option3.readProtocols();
+                    break;
+                case 4:
+                    Login();
+                default:
+                    System.out.println("Моля изберете една от посочените горе опции!");
+                    n = input.nextInt();
+            }
+        }
+        catch (Exception e){
+            System.out.println("Грешни входни данни!");
         }
     }
 
@@ -90,18 +107,22 @@ public class LoginPage{
         Employee protocol1 = new Employee();
         Scanner input = new Scanner(System.in);
         System.out.println("Изберете опция 1 за протокол или опция 2 за изход");
-        int n = input.nextInt();
-        switch(n){
-            case 1:
-                protocol1.protocol();
-                break;
-            case 2:
-                Login();
-                break;
-            default:
-                System.out.println("Моля изберете една от посочените горе опции!");
-                n = input.nextInt();
+        try {
+            int n = input.nextInt();
+            switch (n) {
+                case 1:
+                    protocol1.protocol();
+                    break;
+                case 2:
+                    Login();
+                    break;
+                default:
+                    System.out.println("Моля изберете една от посочените горе опции!");
+                    n = input.nextInt();
+            }
         }
-
+        catch (Exception e){
+            System.out.println("Грешни входни данни!");
+        }
     }
 }
