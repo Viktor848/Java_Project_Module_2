@@ -4,14 +4,13 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Admin<T> extends LoginPage implements adminInterface{
+public  class Admin<T> extends LoginPage implements adminInterface{
     public ArrayList<String> customers = new ArrayList<>();
 
 
-    public void addNewCustomer() throws IOException {
+    public void addNewCustomer(Scanner input) throws IOException {
         FileWriter fileWriter = new FileWriter("Customers.txt", true);
         PrintWriter out = new PrintWriter(fileWriter);
-        Scanner input = new Scanner(System.in);
         System.out.println("Въведете име на клиента: ");
         try {
             String customerName = input.nextLine();
@@ -27,10 +26,14 @@ public class Admin<T> extends LoginPage implements adminInterface{
         }
     }
 
-    public void addNewEmployee() throws IOException {
+    @Override
+    public void readProtocols(Scanner input) throws IOException {
+
+    }
+
+    public void addNewEmployee(Scanner input) throws IOException {
         FileWriter fileWriter = new FileWriter("Names and Passwords.txt", true);
         PrintWriter out = new PrintWriter(fileWriter);
-        Scanner input = new Scanner(System.in);
         System.out.println("Въведете име: ");
         try {
             String employeeName = input.nextLine();
