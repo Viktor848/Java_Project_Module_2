@@ -29,8 +29,9 @@ public  class LoginPage implements loginPageInterface{
         }
     }
 
-    public void Login(Scanner input) throws IOException {
+    public void Login() throws IOException {
         namesAndPasswords();
+        Scanner input = new Scanner(System.in);
         System.out.println("Въведете име: ");
         try {
             String name = input.nextLine();
@@ -44,9 +45,9 @@ public  class LoginPage implements loginPageInterface{
                                 while (true) {
                                     if (password.equals(passwords.get(i))) {
                                         if (password.equals(passwords.get(0)) && name.equals(names.get(0))) {
-                                            adminOptions(input);
+                                            adminOptions();
                                         } else {
-                                            employeeOptions(input);
+                                            employeeOptions();
                                         }
                                     } else {
                                         System.out.println("Try again!");
@@ -70,8 +71,9 @@ public  class LoginPage implements loginPageInterface{
         }
     }
 
-    @Override
-    public void adminOptions(Scanner input) throws IOException {
+
+    public void adminOptions() throws IOException {
+        Scanner input = new Scanner(System.in);
         System.out.println("Влязохте като админ!\nМоля изберете една от 3-те опции: ");
         System.out.println("Първа опция е да се въведе клиент\nВтора опция е да се въведе служител\n" +
                 "Трета да се гледа статистика на служителите\nЧетвърта опция е за изход");
@@ -80,18 +82,18 @@ public  class LoginPage implements loginPageInterface{
             switch (n) {
                 case 1:
                     AdminOptions option1 = new AdminOptions();
-                    option1.addNewCustomer(input);
+                    option1.addNewCustomer();
                     break;
                 case 2:
                     AdminOptions option2 = new AdminOptions();
-                    option2.addNewEmployee(input);
+                    option2.addNewEmployee();
                     break;
                 case 3:
                     AdminOptions option3 = new AdminOptions();
                     option3.readProtocols();
                     break;
                 case 4:
-                    Login(input);
+                    Login();
                 default:
                     System.out.println("Моля изберете една от посочените горе опции!");
                     n = input.nextInt();
@@ -102,17 +104,18 @@ public  class LoginPage implements loginPageInterface{
         }
     }
 
-    public void employeeOptions(Scanner input) throws IOException {
+    public void employeeOptions() throws IOException {
+        Scanner input = new Scanner(System.in);
         EmployeeOptions protocol1 = new EmployeeOptions();
         System.out.println("Изберете опция 1 за протокол или опция 2 за изход");
         try {
             int n = input.nextInt();
             switch (n) {
                 case 1:
-                    protocol1.protocol(input);
+                    protocol1.protocol();
                     break;
                 case 2:
-                    Login(input);
+                    Login();
                     break;
                 default:
                     System.out.println("Моля изберете една от посочените горе опции!");

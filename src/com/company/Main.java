@@ -7,7 +7,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         LoginPage login = new LoginPage();
-        Scanner input = new Scanner(System.in);
-        login.Login(input);
+        login.Login();
     }
 }

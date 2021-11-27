@@ -7,9 +7,10 @@ import java.util.Scanner;
 
 public class EmployeeOptions implements employeeInterface{
 
-        public void protocol(Scanner input) throws IOException {
+        public void protocol() throws IOException {
             FileWriter fileWriter = new FileWriter("Employee's protocols.txt", true);
             PrintWriter out = new PrintWriter(fileWriter);
+            Scanner input = new Scanner(System.in);
             System.out.println("За кои клиенти си работил/а днес?");
             try {
                 String customerName = input.nextLine();

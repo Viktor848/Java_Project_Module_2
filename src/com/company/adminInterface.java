@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public interface adminInterface {
-     void addNewEmployee(Scanner input) throws IOException;
-     void addNewCustomer(Scanner input) throws IOException;
+     void addNewEmployee() throws IOException;
+     void addNewCustomer() throws IOException;
      void readProtocols() throws FileNotFoundException;
 }

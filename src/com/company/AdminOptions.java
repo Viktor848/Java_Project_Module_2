@@ -7,9 +7,10 @@ import java.util.Scanner;
 public class AdminOptions implements adminInterface {
     public ArrayList<String> customers = new ArrayList<>();
 
-    public void addNewCustomer(Scanner input) throws IOException {
+    public void addNewCustomer() throws IOException {
         FileWriter fileWriter = new FileWriter("Customers.txt", true);
         PrintWriter out = new PrintWriter(fileWriter);
+        Scanner input = new Scanner(System.in);
         System.out.println("Въведете име на клиента: ");
         try {
             String customerName = input.nextLine();
@@ -24,9 +25,10 @@ public class AdminOptions implements adminInterface {
         }
     }
 
-    public void addNewEmployee(Scanner input) throws IOException {
+    public void addNewEmployee() throws IOException {
         FileWriter fileWriter = new FileWriter("Names and Passwords.txt", true);
         PrintWriter out = new PrintWriter(fileWriter);
+        Scanner input = new Scanner(System.in);
         System.out.println("Въведете име: ");
         try {
             String employeeName = input.nextLine();
