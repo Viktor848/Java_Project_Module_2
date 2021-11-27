@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class LoginPage implements loginPageInterface{
+public class LoginPage{
     private ArrayList<String> names = new ArrayList<>();
     private ArrayList<String> passwords = new ArrayList<>();
 
@@ -80,15 +80,15 @@ public class LoginPage implements loginPageInterface{
             int n = input.nextInt();
             switch (n) {
                 case 1:
-                    Admin option1 = new Admin();
+                    AdminOptions option1 = new AdminOptions();
                     option1.addNewCustomer();
                     break;
                 case 2:
-                    Admin option2 = new Admin();
+                    AdminOptions option2 = new AdminOptions();
                     option2.addNewEmployee();
                     break;
                 case 3:
-                    Admin option3 = new Admin();
+                    AdminOptions option3 = new AdminOptions();
                     option3.readProtocols();
                     break;
                 case 4:
@@ -104,7 +104,7 @@ public class LoginPage implements loginPageInterface{
     }
 
     public void employeeOptions() throws IOException {
-        Employee protocol1 = new Employee();
+        EmployeeOptions protocol1 = new EmployeeOptions();
         Scanner input = new Scanner(System.in);
         System.out.println("Изберете опция 1 за протокол или опция 2 за изход");
         try {

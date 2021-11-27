@@ -4,16 +4,14 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Admin<T> extends LoginPage implements adminInterface{
-    public ArrayList<String> customers = new ArrayList<>();
-
+public class AdminOptions extends LoginPage{
+    public ArrayList<Customer> customers = new ArrayList<>();
 
     public void addNewCustomer() throws IOException {
         FileWriter fileWriter = new FileWriter("Customers.txt", true);
         PrintWriter out = new PrintWriter(fileWriter);
         Scanner input = new Scanner(System.in);
         System.out.println("Въведете име на клиента: ");
-        try {
             String customerName = input.nextLine();
             System.out.println("Въведете име на проекта: ");
             String projectName = input.nextLine();
@@ -21,10 +19,15 @@ public class Admin<T> extends LoginPage implements adminInterface{
             String dateOfTheEnd = input.nextLine();
             out.println("Име на клиента: " + customerName + " Име на проекта: " + projectName + " Дата за край на проекта: " + dateOfTheEnd);
             out.close();
+
+        File file = new File("Customers.txt");
+        Scanner fileReader = new Scanner(file, "windows-1251");
+        ArrayList<String> list = new ArrayList<>();
+        input.useDelimiter(",");
+        while (fileReader.hasNextLine()){
+            list.add(fileReader.next());
         }
-        catch (Exception e){
-            System.out.println("Грешни входни данни!");
-        }
+        fileReader.close();
     }
 
     public void addNewEmployee() throws IOException {
