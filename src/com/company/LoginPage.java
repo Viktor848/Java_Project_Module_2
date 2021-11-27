@@ -79,15 +79,15 @@ public  class LoginPage implements loginPageInterface{
             int n = input.nextInt();
             switch (n) {
                 case 1:
-                    Admin option1 = new Admin();
+                    AdminOptions option1 = new AdminOptions();
                     option1.addNewCustomer(input);
                     break;
                 case 2:
-                    Admin option2 = new Admin();
+                    AdminOptions option2 = new AdminOptions();
                     option2.addNewEmployee(input);
                     break;
                 case 3:
-                    Admin option3 = new Admin();
+                    AdminOptions option3 = new AdminOptions();
                     option3.readProtocols();
                     break;
                 case 4:
@@ -102,9 +102,8 @@ public  class LoginPage implements loginPageInterface{
         }
     }
 
-    @Override
     public void employeeOptions(Scanner input) throws IOException {
-        Employee protocol1 = new Employee();
+        EmployeeOptions protocol1 = new EmployeeOptions();
         System.out.println("Изберете опция 1 за протокол или опция 2 за изход");
         try {
             int n = input.nextInt();

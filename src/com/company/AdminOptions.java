@@ -4,9 +4,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public  class Admin<T> extends LoginPage implements adminInterface{
+public class AdminOptions implements adminInterface {
     public ArrayList<String> customers = new ArrayList<>();
-
 
     public void addNewCustomer(Scanner input) throws IOException {
         FileWriter fileWriter = new FileWriter("Customers.txt", true);
@@ -20,15 +19,9 @@ public  class Admin<T> extends LoginPage implements adminInterface{
             String dateOfTheEnd = input.nextLine();
             out.println("Име на клиента: " + customerName + " Име на проекта: " + projectName + " Дата за край на проекта: " + dateOfTheEnd);
             out.close();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Грешни входни данни!");
         }
-    }
-
-    @Override
-    public void readProtocols(Scanner input) throws IOException {
-
     }
 
     public void addNewEmployee(Scanner input) throws IOException {
@@ -42,8 +35,7 @@ public  class Admin<T> extends LoginPage implements adminInterface{
             out.println(employeeName);
             out.println(employeePassword);
             out.close();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Грешни входни данни!");
         }
     }
@@ -52,12 +44,11 @@ public  class Admin<T> extends LoginPage implements adminInterface{
         File file = new File("Employee's protocols.txt");
         Scanner fileReader = new Scanner(file, "windows-1251");
         int lineNumber = 0;
-        while (fileReader.hasNext()){
+        while (fileReader.hasNext()) {
             lineNumber++;
-            if (lineNumber % 2 != 0){
+            if (lineNumber % 2 != 0) {
                 System.out.println("Име: " + fileReader.nextLine());
-            }
-            else{
+            } else {
                 System.out.println("Време прекарано с него: " + fileReader.nextLine());
             }
         }
