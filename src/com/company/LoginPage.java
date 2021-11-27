@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class LoginPage{
+public  class LoginPage implements loginPageInterface{
     private ArrayList<String> names = new ArrayList<>();
     private ArrayList<String> passwords = new ArrayList<>();
 
@@ -29,10 +29,9 @@ public class LoginPage{
         }
     }
 
-    public void Login() throws IOException {
+    public void Login(Scanner input) throws IOException {
         namesAndPasswords();
         System.out.println("Въведете име: ");
-        Scanner input = new Scanner(System.in);
         try {
             String name = input.nextLine();
             while (true) {
@@ -41,14 +40,13 @@ public class LoginPage{
                         if (name.equals(names.get(i))) {
                             System.out.println("Въведете парола: ");
                             String password = input.nextLine();
-
                             try {
                                 while (true) {
                                     if (password.equals(passwords.get(i))) {
                                         if (password.equals(passwords.get(0)) && name.equals(names.get(0))) {
-                                            adminOptions();
+                                            adminOptions(input);
                                         } else {
-                                            employeeOptions();
+                                            employeeOptions(input);
                                         }
                                     } else {
                                         System.out.println("Try again!");
@@ -72,27 +70,28 @@ public class LoginPage{
         }
     }
 
-    public void adminOptions() throws IOException {
-        Scanner input = new Scanner(System.in);
+    @Override
+    public void adminOptions(Scanner input) throws IOException {
         System.out.println("Влязохте като админ!\nМоля изберете една от 3-те опции: ");
-        System.out.println("Първа опция е да се въведе клиент\nВтора опция е да се въведе служител\nТрета да се гледа статистика на служителите\nЧетвърта опция е за изход");
+        System.out.println("Първа опция е да се въведе клиент\nВтора опция е да се въведе служител\n" +
+                "Трета да се гледа статистика на служителите\nЧетвърта опция е за изход");
         try {
             int n = input.nextInt();
             switch (n) {
                 case 1:
-                    AdminOptions option1 = new AdminOptions();
-                    option1.addNewCustomer();
+                    Admin option1 = new Admin();
+                    option1.addNewCustomer(input);
                     break;
                 case 2:
-                    AdminOptions option2 = new AdminOptions();
-                    option2.addNewEmployee();
+                    Admin option2 = new Admin();
+                    option2.addNewEmployee(input);
                     break;
                 case 3:
-                    AdminOptions option3 = new AdminOptions();
+                    Admin option3 = new Admin();
                     option3.readProtocols();
                     break;
                 case 4:
-                    Login();
+                    Login(input);
                 default:
                     System.out.println("Моля изберете една от посочените горе опции!");
                     n = input.nextInt();
@@ -103,18 +102,18 @@ public class LoginPage{
         }
     }
 
-    public void employeeOptions() throws IOException {
-        EmployeeOptions protocol1 = new EmployeeOptions();
-        Scanner input = new Scanner(System.in);
+    @Override
+    public void employeeOptions(Scanner input) throws IOException {
+        Employee protocol1 = new Employee();
         System.out.println("Изберете опция 1 за протокол или опция 2 за изход");
         try {
             int n = input.nextInt();
             switch (n) {
                 case 1:
-                    protocol1.protocol();
+                    protocol1.protocol(input);
                     break;
                 case 2:
-                    Login();
+                    Login(input);
                     break;
                 default:
                     System.out.println("Моля изберете една от посочените горе опции!");

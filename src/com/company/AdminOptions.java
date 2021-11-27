@@ -4,14 +4,15 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class AdminOptions extends LoginPage{
-    public ArrayList<Customer> customers = new ArrayList<>();
+public  class Admin<T> extends LoginPage implements adminInterface{
+    public ArrayList<String> customers = new ArrayList<>();
 
-    public void addNewCustomer() throws IOException {
+
+    public void addNewCustomer(Scanner input) throws IOException {
         FileWriter fileWriter = new FileWriter("Customers.txt", true);
         PrintWriter out = new PrintWriter(fileWriter);
-        Scanner input = new Scanner(System.in);
         System.out.println("Въведете име на клиента: ");
+        try {
             String customerName = input.nextLine();
             System.out.println("Въведете име на проекта: ");
             String projectName = input.nextLine();
@@ -19,21 +20,20 @@ public class AdminOptions extends LoginPage{
             String dateOfTheEnd = input.nextLine();
             out.println("Име на клиента: " + customerName + " Име на проекта: " + projectName + " Дата за край на проекта: " + dateOfTheEnd);
             out.close();
-
-        File file = new File("Customers.txt");
-        Scanner fileReader = new Scanner(file, "windows-1251");
-        ArrayList<String> list = new ArrayList<>();
-        input.useDelimiter(",");
-        while (fileReader.hasNextLine()){
-            list.add(fileReader.next());
         }
-        fileReader.close();
+        catch (Exception e){
+            System.out.println("Грешни входни данни!");
+        }
     }
 
-    public void addNewEmployee() throws IOException {
+    @Override
+    public void readProtocols(Scanner input) throws IOException {
+
+    }
+
+    public void addNewEmployee(Scanner input) throws IOException {
         FileWriter fileWriter = new FileWriter("Names and Passwords.txt", true);
         PrintWriter out = new PrintWriter(fileWriter);
-        Scanner input = new Scanner(System.in);
         System.out.println("Въведете име: ");
         try {
             String employeeName = input.nextLine();
