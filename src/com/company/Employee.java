@@ -6,10 +6,10 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Employee  implements employeeInterface{
-    public void protocol() throws IOException {
+    @Override
+    public void protocol(Scanner input) throws IOException {
         FileWriter fileWriter = new FileWriter("Employee's protocols.txt", true);
         PrintWriter out = new PrintWriter(fileWriter);
-        Scanner input = new Scanner(System.in);
         System.out.println("За кои клиенти си работил/а днес?");
         try {
             String customerName = input.nextLine();
@@ -23,4 +23,5 @@ public class Employee  implements employeeInterface{
             System.out.println("Грешни входни данни!");
         }
     }
+
 }
