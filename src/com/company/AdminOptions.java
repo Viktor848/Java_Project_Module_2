@@ -49,9 +49,9 @@ public class AdminOptions implements adminInterface {
         while (fileReader.hasNext()) {
             lineNumber++;
             if (lineNumber % 2 != 0) {
-                System.out.println("Име: " + fileReader.nextLine());
+                System.out.println("Име на проекта: " + fileReader.nextLine());
             } else {
-                System.out.println("Време прекарано с него: " + fileReader.nextLine());
+                System.out.println("Време прекарано с него: " + fileReader.nextLine() + " мин.");
             }
         }
         fileReader.close();

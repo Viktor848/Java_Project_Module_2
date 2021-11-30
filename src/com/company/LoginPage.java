@@ -32,14 +32,14 @@ public  class LoginPage implements loginPageInterface{
     public void Login() throws IOException {
         namesAndPasswords();
         Scanner input = new Scanner(System.in);
-        System.out.println("Въведете име: ");
+        System.out.print("Въведете име: ");
         try {
             String name = input.nextLine();
             while (true) {
                 if (names.contains(name)) {
                     for (int i = 0; i < names.size(); i++) {
                         if (name.equals(names.get(i))) {
-                            System.out.println("Въведете парола: ");
+                            System.out.print("Въведете парола: ");
                             String password = input.nextLine();
                             try {
                                 while (true) {
@@ -51,6 +51,7 @@ public  class LoginPage implements loginPageInterface{
                                         }
                                     } else {
                                         System.out.println("Try again!");
+                                        System.out.print("Въведете парола: ");
                                         password = input.nextLine();
                                     }
                                 }
@@ -62,6 +63,7 @@ public  class LoginPage implements loginPageInterface{
                     }
                 } else {
                     System.out.println("Try again!");
+                    System.out.print("Въведете име: ");
                     name = input.nextLine();
                 }
             }
@@ -75,8 +77,8 @@ public  class LoginPage implements loginPageInterface{
     public void adminOptions() throws IOException {
         Scanner input = new Scanner(System.in);
         System.out.println("Влязохте като админ!\nМоля изберете една от 3-те опции: ");
-        System.out.println("Първа опция е да се въведе клиент\nВтора опция е да се въведе служител\n" +
-                "Трета да се гледа статистика на служителите\nЧетвърта опция е за изход");
+        System.out.println("(1)-Първа опция е да се въведе клиент.\n(2)-Втора опция е да се въведе служител.\n" +
+                "(3)-Трета да се гледа статистика на служителите.\n(4)-Четвърта опция е за изход.");
         try {
             int n = input.nextInt();
             switch (n) {
@@ -107,7 +109,9 @@ public  class LoginPage implements loginPageInterface{
     public void employeeOptions(String name) throws IOException {
         Scanner input = new Scanner(System.in);
         EmployeeOptions protocol1 = new EmployeeOptions();
-        System.out.println("Изберете опция 1 за протокол или опция 2 за изход");
+        System.out.println("Изберете опция за протокол или за изход");
+        System.out.println("(1)-Протокол.");
+        System.out.println("(2)-Изход.");
         try {
             int n = input.nextInt();
             switch (n) {
