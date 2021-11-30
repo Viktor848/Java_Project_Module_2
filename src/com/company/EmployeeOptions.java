@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class EmployeeOptions implements employeeInterface{
 
-        public void protocol() throws IOException {
+        public void protocol(String name) throws IOException {
             FileWriter fileWriter = new FileWriter("Employee's protocols.txt", true);
             PrintWriter out = new PrintWriter(fileWriter);
             Scanner input = new Scanner(System.in);
@@ -23,5 +23,9 @@ public class EmployeeOptions implements employeeInterface{
             catch (Exception e){
                 System.out.println("Грешни входни данни!");
             }
+            FileWriter fileWriter2 = new FileWriter("Employee's name.txt", true);
+            PrintWriter out2 = new PrintWriter(fileWriter2);
+            out2.println(name);
+            out2.close();
         }
 }

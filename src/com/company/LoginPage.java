@@ -47,7 +47,7 @@ public  class LoginPage implements loginPageInterface{
                                         if (password.equals(passwords.get(0)) && name.equals(names.get(0))) {
                                             adminOptions();
                                         } else {
-                                            employeeOptions();
+                                            employeeOptions(names.get(i));
                                         }
                                     } else {
                                         System.out.println("Try again!");
@@ -104,7 +104,7 @@ public  class LoginPage implements loginPageInterface{
         }
     }
 
-    public void employeeOptions() throws IOException {
+    public void employeeOptions(String name) throws IOException {
         Scanner input = new Scanner(System.in);
         EmployeeOptions protocol1 = new EmployeeOptions();
         System.out.println("Изберете опция 1 за протокол или опция 2 за изход");
@@ -112,7 +112,7 @@ public  class LoginPage implements loginPageInterface{
             int n = input.nextInt();
             switch (n) {
                 case 1:
-                    protocol1.protocol();
+                    protocol1.protocol(name);
                     break;
                 case 2:
                     Login();
