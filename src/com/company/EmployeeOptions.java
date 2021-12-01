@@ -25,15 +25,12 @@ public class EmployeeOptions implements employeeInterface{
                 String timeSpend = input.nextLine();
                 out.println(customerName);
                 out.println(timeSpend);
+                out.println(name);
                 out.close();
             }
             catch (Exception e){
                 System.out.println("Грешни входни данни!");
             }
-            FileWriter fileWriter2 = new FileWriter("Employee's name.txt", true);
-            PrintWriter out2 = new PrintWriter(fileWriter2);
-            out2.println(name);
-            out2.close();
         }
 
         public void displayCustomerNames() throws FileNotFoundException {

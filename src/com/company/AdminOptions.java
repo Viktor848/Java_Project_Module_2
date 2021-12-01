@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AdminOptions implements adminInterface {
-    public ArrayList<String> customers = new ArrayList<>();
+    public ArrayList<String> authors = new ArrayList<>();
 
     public void addNewCustomer() throws IOException {
         FileWriter fileWriter = new FileWriter("Customers.txt", true);
@@ -42,18 +42,36 @@ public class AdminOptions implements adminInterface {
         }
     }
 
-    public void readProtocols() throws FileNotFoundException {
+    public void searchProtocols() throws FileNotFoundException {
         File file = new File("Employee's protocols.txt");
         Scanner fileReader = new Scanner(file, "windows-1251");
-        int lineNumber = 0;
-        while (fileReader.hasNext()) {
-            lineNumber++;
-            if (lineNumber % 2 != 0) {
-                System.out.println("Име на проекта: " + fileReader.nextLine());
-            } else {
-                System.out.println("Време прекарано с него: " + fileReader.nextLine() + " мин.");
-            }
+        Scanner input = new Scanner(System.in);
+        ArrayList<String> list = new ArrayList<String>();
+        while (fileReader.hasNext()){
+            list.add(fileReader.next());
         }
         fileReader.close();
+
+        for (int i = 0; i < list.size(); i++) {
+            if(list.indexOf(i) / 3 != 0){
+
+            }
+        }
+        
+        for (int i = 0; i < list.size(); i+=3) {
+            authors.add(list.get(i));
+        }
+
+        System.out.println("На кого искате да погледнете протокола:");
+        String employeeName = input.nextLine();
+        while(!authors.contains(employeeName)){
+            System.out.println("Няма такъв служител!");
+            employeeName = input.nextLine();
+        }
+        for (int i = 0; i < authors.size(); i++) {
+            if(employeeName.equals(authors.get(i))){
+                System.out.println();
+            }
+        }
     }
 }

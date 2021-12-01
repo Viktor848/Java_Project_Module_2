@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public  class LoginPage implements loginPageInterface{
+public  class LoginPage implements loginPageInterface {
     private ArrayList<String> names = new ArrayList<>();
     private ArrayList<String> passwords = new ArrayList<>();
 
@@ -14,16 +14,15 @@ public  class LoginPage implements loginPageInterface{
         File file = new File("Names and Passwords.txt");
         Scanner fileReader = new Scanner(file, "windows-1251");
         ArrayList<String> list = new ArrayList<String>();
-        while (fileReader.hasNext()){
+        while (fileReader.hasNext()) {
             list.add(fileReader.next());
         }
         fileReader.close();
 
         for (int i = 0; i < list.size(); i++) {
-            if(i % 2 == 0){
+            if (i % 2 == 0) {
                 names.add(list.get(i));
-            }
-            else{
+            } else {
                 passwords.add(list.get(i));
             }
         }
@@ -35,43 +34,34 @@ public  class LoginPage implements loginPageInterface{
         System.out.print("Въведете име: ");
         try {
             String name = input.nextLine();
-            while (true) {
-                if (names.contains(name)) {
-                    for (int i = 0; i < names.size(); i++) {
-                        if (name.equals(names.get(i))) {
-                            System.out.print("Въведете парола: ");
-                            String password = input.nextLine();
-                            try {
-                                while (true) {
-                                    if (password.equals(passwords.get(i))) {
-                                        if (password.equals(passwords.get(0)) && name.equals(names.get(0))) {
-                                            adminOptions();
-                                        } else {
-                                            employeeOptions(names.get(i));
-                                        }
-                                    } else {
-                                        System.out.println("Try again!");
-                                        System.out.print("Въведете парола: ");
-                                        password = input.nextLine();
-                                    }
-                                }
-                            }
-                            catch (Exception e){
-                                System.out.println("Грешни входни данни!");
-                            }
+            while (!names.contains(name)) {
+                System.out.println("Няма такова име!");
+                name = input.nextLine();
+            }
+            for (int i = 0; i < names.size(); i++) {
+                if (name.equals(names.get(i))) {
+                    System.out.print("Въведете парола: ");
+                    String password = input.nextLine();
+                    while (!password.equals(passwords.get(i))) {
+                        System.out.println("Грешна парола!");
+                        password = input.nextLine();
+                    }
+                    if (password.equals(passwords.get(0)) && name.equals(names.get(0))) {
+                        while(true) {
+                            adminOptions();
+                        }
+                    } else {
+                        while(true) {
+                            employeeOptions(names.get(i));
                         }
                     }
-                } else {
-                    System.out.println("Try again!");
-                    System.out.print("Въведете име: ");
-                    name = input.nextLine();
                 }
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Грешни входни данни!");
         }
     }
+
 
 
     public void adminOptions() throws IOException {
@@ -92,7 +82,7 @@ public  class LoginPage implements loginPageInterface{
                     break;
                 case 3:
                     AdminOptions option3 = new AdminOptions();
-                    option3.readProtocols();
+                    option3.searchProtocols();
                     break;
                 case 4:
                     Login();
@@ -113,18 +103,18 @@ public  class LoginPage implements loginPageInterface{
         System.out.println("(1)-Протокол.");
         System.out.println("(2)-Изход.");
         try {
-            int n = input.nextInt();
-            switch (n) {
-                case 1:
-                    protocol1.protocol(name);
-                    break;
-                case 2:
-                    Login();
-                    break;
-                default:
-                    System.out.println("Моля изберете една от посочените горе опции!");
-                    n = input.nextInt();
-            }
+                int n = input.nextInt();
+                switch (n) {
+                    case 1:
+                        protocol1.protocol(name);
+                        break;
+                    case 2:
+                        Login();
+                        break;
+                    default:
+                        System.out.println("Моля изберете една от посочените горе опции!");
+                        n = input.nextInt();
+                }
         }
         catch (Exception e){
             System.out.println("Грешни входни данни!");
