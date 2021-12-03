@@ -56,15 +56,12 @@ public class AdminOptions implements adminInterface {
         }
         fileReader.close();
 
-        for (int i = 0; i < list.size(); i++) {
-            if(i % 3 != 0){
-                if(i % 2 == 0){
-                    names.add(list.get(i - 1));
-                }
-                else{
-                    workTime.add(list.get(i - 1));
-                }
-            }
+        for (int i = 0; i < list.size(); i+=3) {
+            names.add(list.get(i));
+        }
+
+        for (int i = 1; i < list.size(); i+=3) {
+            workTime.add(list.get(i));
         }
         
         for (int i = 2; i < list.size(); i+=3) {
