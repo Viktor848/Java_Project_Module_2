@@ -11,12 +11,12 @@ public class AdminOptions implements adminInterface {
         FileWriter fileWriter = new FileWriter("Customers.txt", true);
         PrintWriter out = new PrintWriter(fileWriter);
         Scanner input = new Scanner(System.in);
-        System.out.println("Въведете име на клиента: ");
+        System.out.print("Въведете име на клиента: ");
         try {
             String customerName = input.nextLine();
-            System.out.println("Въведете име на проекта: ");
+            System.out.print("Въведете име на проекта: ");
             String projectName = input.nextLine();
-            System.out.println("Въведете дата за край на проекта: ");
+            System.out.print("Въведете дата за край на проекта: ");
             String dateOfTheEnd = input.nextLine();
             out.println(customerName);
             out.println(projectName);
@@ -31,10 +31,10 @@ public class AdminOptions implements adminInterface {
         FileWriter fileWriter = new FileWriter("Names and Passwords.txt", true);
         PrintWriter out = new PrintWriter(fileWriter);
         Scanner input = new Scanner(System.in);
-        System.out.println("Въведете име: ");
+        System.out.print("Въведете име: ");
         try {
             String employeeName = input.nextLine();
-            System.out.println("Въведете парола: ");
+            System.out.print("Въведете парола: ");
             String employeePassword = input.nextLine();
             out.println(employeeName);
             out.println(employeePassword);
@@ -68,20 +68,18 @@ public class AdminOptions implements adminInterface {
             authors.add(list.get(i));
         }
 
-        System.out.println(authors.size());
-        System.out.println(names.size());
-        System.out.println(workTime.size());
-        System.out.println("На кого искате да погледнете протокола:");
+        System.out.println(authors);
+        System.out.print("На кого искате да погледнете протокола: ");
         String employeeName = input.nextLine();
         while(!authors.contains(employeeName)){
             System.out.println("Няма такъв служител!");
+            System.out.print("На кого искате да погледнете протокола: ");
             employeeName = input.nextLine();
         }
 
         for (int i = 0; i < authors.size(); i++) {
             if(employeeName.equals(authors.get(i))){
-                System.out.println(names.get(i));
-                System.out.println(workTime.get(i));
+                System.out.println("Име на клиент: " + names.get(i) + ", Време работено с клиент: " + workTime.get(i) + " минути");
             }
         }
     }

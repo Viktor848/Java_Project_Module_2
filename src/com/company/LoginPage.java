@@ -30,21 +30,22 @@ public  class LoginPage implements loginPageInterface {
 
     public void Login() throws IOException {
         namesAndPasswords();
-        Scanner input = new Scanner(System.in);
         System.out.print("Въведете име: ");
         try {
-            String name = input.nextLine();
+            String name = name();
             while (!names.contains(name)) {
                 System.out.println("Няма такова име!");
-                name = input.nextLine();
+                System.out.print("Въведете име: ");
+                name = name();
             }
             for (int i = 0; i < names.size(); i++) {
                 if (name.equals(names.get(i))) {
                     System.out.print("Въведете парола: ");
-                    String password = input.nextLine();
+                    String password = password();
                     while (!password.equals(passwords.get(i))) {
                         System.out.println("Грешна парола!");
-                        password = input.nextLine();
+                        System.out.print("Въведете парола: ");
+                        password = password();
                     }
                     if (password.equals(passwords.get(0)) && name.equals(names.get(0))) {
                         while(true) {
@@ -61,6 +62,16 @@ public  class LoginPage implements loginPageInterface {
             System.out.println("Грешни входни данни!");
         }
     }
+    public String password(){
+        Scanner input = new Scanner(System.in);
+        String password = input.nextLine();
+        return password;
+    }
+    public String name(){
+        Scanner input = new Scanner(System.in);
+        String name = input.nextLine();
+        return name;
+    }
 
 
 
@@ -70,8 +81,8 @@ public  class LoginPage implements loginPageInterface {
         System.out.println("(1)-Първа опция е да се въведе клиент.\n(2)-Втора опция е да се въведе служител.\n" +
                 "(3)-Трета да се гледа статистика на служителите.\n(4)-Четвърта опция е за изход.");
         try {
-            int n = input.nextInt();
-            switch (n) {
+            int num = input.nextInt();
+            switch (num) {
                 case 1:
                     AdminOptions option1 = new AdminOptions();
                     option1.addNewCustomer();
@@ -88,7 +99,7 @@ public  class LoginPage implements loginPageInterface {
                     Login();
                 default:
                     System.out.println("Моля изберете една от посочените горе опции!");
-                    n = input.nextInt();
+                    num = input.nextInt();
             }
         }
         catch (Exception e){
@@ -103,18 +114,18 @@ public  class LoginPage implements loginPageInterface {
         System.out.println("(1)-Протокол.");
         System.out.println("(2)-Изход.");
         try {
-                int n = input.nextInt();
-                switch (n) {
-                    case 1:
-                        protocol1.protocol(name);
-                        break;
-                    case 2:
-                        Login();
-                        break;
-                    default:
-                        System.out.println("Моля изберете една от посочените горе опции!");
-                        n = input.nextInt();
-                }
+            int num = input.nextInt();
+            switch (num) {
+                case 1:
+                    protocol1.protocol(name);
+                    break;
+                case 2:
+                    Login();
+                    break;
+                default:
+                    System.out.println("Моля изберете една от посочените горе опции!");
+                    num = input.nextInt();
+            }
         }
         catch (Exception e){
             System.out.println("Грешни входни данни!");

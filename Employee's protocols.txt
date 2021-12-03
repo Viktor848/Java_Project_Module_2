@@ -1,9 +1,3 @@
 tosho
 35
-ma
-in
-15
-ivan
-tosho
-90
-ma
+krum

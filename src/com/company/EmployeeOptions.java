@@ -17,6 +17,7 @@ public class EmployeeOptions implements employeeInterface{
                 String customerName = input.nextLine();
                 while(!customerNames.contains(customerName)){
                     System.out.println("Няма такъв клиент!");
+                    System.out.println("Въведете друг клиент:");
                     customerName = input.nextLine();
                 }
 
