@@ -1,5 +1,10 @@
 package com.company;
 
+import com.company.AdminOptions.AddNewCustomer;
+import com.company.AdminOptions.AddNewEmployee;
+import com.company.AdminOptions.SearchProtocols;
+import com.company.Interfaces.loginPageInterface;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -28,7 +33,7 @@ public  class LoginPage implements loginPageInterface {
         }
     }
 
-    public void Login() throws IOException {
+    public void login() throws IOException {
         namesAndPasswords();
         System.out.print("Въведете име: ");
         try {
@@ -62,6 +67,7 @@ public  class LoginPage implements loginPageInterface {
             System.out.println("Грешни входни данни!");
         }
     }
+
     public String password(){
         Scanner input = new Scanner(System.in);
         String password = input.nextLine();
@@ -84,19 +90,19 @@ public  class LoginPage implements loginPageInterface {
             int num = input.nextInt();
             switch (num) {
                 case 1:
-                    AdminOptions option1 = new AdminOptions();
+                    AddNewCustomer option1 = new AddNewCustomer();
                     option1.addNewCustomer();
                     break;
                 case 2:
-                    AdminOptions option2 = new AdminOptions();
+                    AddNewEmployee option2 = new AddNewEmployee();
                     option2.addNewEmployee();
                     break;
                 case 3:
-                    AdminOptions option3 = new AdminOptions();
+                    SearchProtocols option3 = new SearchProtocols();
                     option3.searchProtocols();
                     break;
                 case 4:
-                    Login();
+                    login();
                 default:
                     System.out.println("Моля изберете една от посочените горе опции!");
                     num = input.nextInt();
@@ -114,17 +120,17 @@ public  class LoginPage implements loginPageInterface {
         System.out.println("(1)-Протокол.");
         System.out.println("(2)-Изход.");
         try {
-            int num = input.nextInt();
-            switch (num) {
+            int option = input.nextInt();
+            switch (option) {
                 case 1:
-                    protocol1.protocol(name);
+                    protocol1.writingProtocol(name);
                     break;
                 case 2:
-                    Login();
+                    login();
                     break;
                 default:
                     System.out.println("Моля изберете една от посочените горе опции!");
-                    num = input.nextInt();
+                    option = input.nextInt();
             }
         }
         catch (Exception e){

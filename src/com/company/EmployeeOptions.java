@@ -1,13 +1,15 @@
 package com.company;
 
+import com.company.Interfaces.employeeInterface;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class EmployeeOptions implements employeeInterface{
+public class EmployeeOptions{
     private ArrayList<String> customerNames = new ArrayList<>();
 
-        public void protocol(String name) throws IOException {
+        public void writingProtocol(String name) throws IOException {
             FileWriter fileWriter = new FileWriter("Employee's protocols.txt", true);
             PrintWriter out = new PrintWriter(fileWriter);
             Scanner input = new Scanner(System.in);
@@ -21,11 +23,10 @@ public class EmployeeOptions implements employeeInterface{
                     customerName = input.nextLine();
                 }
 
-
                 System.out.println("Колко време отдели на клиента?");
-                String timeSpend = input.nextLine();
+                String timeSpendOnCustomer = input.nextLine();
                 out.println(customerName);
-                out.println(timeSpend);
+                out.println(timeSpendOnCustomer);
                 out.println(name);
                 out.close();
             }

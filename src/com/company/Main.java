@@ -6,6 +6,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         LoginPage login = new LoginPage();
-        login.Login();
+        login.login();
     }
 }
