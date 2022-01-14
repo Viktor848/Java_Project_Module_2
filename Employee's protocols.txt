@@ -7,3 +7,9 @@ viktor
 tosho
 -30
 viktor
+tosho
+13
+tedi
+sashko
+30
+gabi
